@@ -1,58 +1,57 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <!-- happy coding -->
+  <div class="p-3" style="max-width: 400px; margin: 50px auto; background: #234;">
+    
+    <!-- Calculator result -->
+    <div class="w-full rounded m-1 p-3 text-right lead font-weight-bold text-white bg-vue-dark">
+      {{ calculatorValue || 0 }}
+    </div>
+
+    <!-- buttons -->
+    <div class="row no-gutters">
+      <div class="col-3" v-for="n in calculatorElements" :key="n">
+        <div class="lead text-white text-center m-1 py-3 bg-vue-dark rounded hover-class" 
+            :class="{'bg-vue-green': ['C', '*', '/', '-', '+', '%', '='].includes(n)}"
+            @click="action(n)">
+            {{ n }}
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Calculator',
   props: {
     msg: String
-  }
+  },
+
+  data() {
+    return {
+      calculatorValue: '',
+      calculatorElements: ['C', '*', '/', '-', 7, 8, 9, '+', 4, 5, 6, '%', 1, 2, 3, '=', 0, '.'],
+      operator: null,
+      previousCalculatorValue: ''
+    }
+  },
+
+
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+  .bg-vue-dark{
+    background: #31475e;
+  }
+
+  .hover-class:hover {
+    cursor: pointer;
+    background: #3d5875;
+  }
+
+  .bg-vue-green {
+    background: #3fb984;
+  }
 </style>

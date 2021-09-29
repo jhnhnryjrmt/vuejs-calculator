@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
     <calculator></calculator>
   </div>
 </template>
@@ -17,5 +16,7 @@ export default {
 </script>
 
 <style>
-
+  body {
+    background: #31475e;
+  }
 </style>
