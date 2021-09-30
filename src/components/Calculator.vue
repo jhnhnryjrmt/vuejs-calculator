@@ -36,7 +36,42 @@ export default {
       previousCalculatorValue: ''
     }
   },
+  methods: {
+    action(n) {
 
+      // Append value
+      if(!isNaN(n) || n === '.') {
+        this.calculatorValue += n + '';
+      }
+
+      // Clear Value
+      if(n ==='C') {
+        this.calculatorValue = '';
+      }
+
+      // Percentage
+      if(n === '%') {
+        this.calculatorValue = this.calculatorValue / 100 + '';
+      }
+
+      // operators
+      if(['/', '*', '-', '+'].includes(n)) {
+        this.operator = n;
+        this.previousCalculatorValue = this.calculatorValue;
+        this.calculatorValue = '';
+      }
+
+      // Calculate result using the eval function
+      if(n === '=') {
+        this.calculatorValue = eval(
+          this.previousCalculatorValue + this.operator + this.calculatorValue
+        );
+        this.previousCalculatorValue = '';
+        this.operator = null;
+      }
+
+    }
+  }
 
 }
 </script>
